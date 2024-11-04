@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/{{testPackage}}'
 import { create, currentUser, login, logout, php, refreshDatabase } from './laravel-helpers'
 
 test('Can create a new user and log them in', async ({ page }) => {

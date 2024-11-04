@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\LaravelPlaywright;
+namespace didix16\LaravelPlaywright;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -9,7 +9,8 @@ class PlaywrightServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        if ($this->app->environment('production')) {
+        // If the app is not running in the testing environment, DON'T register the package
+        if (!$this->app->environment(env('PLAYWRIGHT_ENV', 'testing'), 'local')) {
             return;
         }
 

@@ -1,5 +1,5 @@
 {
-    "name": "web-id/laravel-playwright",
+    "name": "didix16/laravel-playwright",
     "description": "Laravel Playwright Boilerplate",
     "keywords": [
         "laravel",
@@ -12,18 +12,25 @@
         {
             "name": "Yoann Frommelt",
             "email": "yoann@web-id.fr"
+        },
+        {
+            "name": "Dídac Rodríguez",
+            "email": "drodriguez816@gmail.com"
         }
     ],
-    "homepage": "https://github.com/web-id-fr/laravel-playwright",
+    "homepage": "https://github.com/didix16/laravel-playwright",
     "autoload": {
         "psr-4": {
-            "WebId\\LaravelPlaywright\\": "src/"
+            "didix16\\LaravelPlaywright\\": "src/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0"
+        "illuminate/console": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/http": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/routing": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "^8.0|^9.0|^10.0|^11.0"
     },
     "config": {
         "sort-packages": true
@@ -31,9 +38,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WebId\\LaravelPlaywright\\PlaywrightServiceProvider"
+                "didix16\\LaravelPlaywright\\PlaywrightServiceProvider"
             ]
         }
     }
 }
-

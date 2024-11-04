@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\LaravelPlaywright\Controllers;
+namespace didix16\LaravelPlaywright\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -23,6 +23,18 @@ class PlaywrightController
                 ];
             })
             ->keyBy('name');
+    }
+
+    public function route(Request $request)
+    {
+        return response()
+            ->json(
+                route(
+                    $request->input('name'),
+                    $request->input('parameters', []
+                    )
+                )
+            );
     }
 
     public function login(Request $request)

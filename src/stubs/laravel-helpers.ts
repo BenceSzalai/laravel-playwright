@@ -166,7 +166,7 @@ export type SeedProps = {
  *          seed({page, seederClass: 'PlansTableSeeder'});
  */
 export async function seed({ page, seederClass = '' }: SeedProps) {
-    const parameters = {}
+    const parameters = {} as Record<string, string>
 
     if (seederClass) {
         parameters['--class'] = seederClass
@@ -194,4 +194,52 @@ export async function php({ page, command }: PhpProps) {
     })
     const json = await response.json()
     return json.result ?? json
+}
+
+export type RouteProps = {
+    page: Page
+    name: string
+    parameters?: Record<string, string|number|object>
+}
+
+/**
+ * Generate the URL to a named route.
+ * @param page
+ * @param name
+ * @param parameters
+ */
+export async function route({ page, name, parameters = {} } : RouteProps): Promise<string> {
+    const token = await csrfToken({ page })
+    const response = await page.request.get('/__playwright__/route', {
+        headers: { Accept: 'application/json' },
+        data: { _token: token, name, parameters },
+    })
+    return await response.json()
+}
+
+export type ApiMockProps = {
+    page: Page
+    url: string| RegExp
+    status?: number
+    headers?: Record<string, string>
+    body?: Record<string, any>|Array<Record<string, any>>|string|Buffer|undefined
+}
+
+/**
+ * Mock an API response.
+ * @param page The test Page object
+ * @param url The URL to mock. It can be a string or a RegExp. String can be a glob pattern.
+ * @param status The HTTP status code to return
+ * @param headers The HTTP headers to return
+ * @param body The HTTP body to return. It can be a string, a JSON object, or a Buffer.
+ */
+export async function apiMock({page, url, status = 200, headers = {}, body = {}}: ApiMockProps) {
+
+    return page.route(url, async (route) => {
+        await route.fulfill({
+            status,
+            headers,
+            body: typeof body !== "string" ? JSON.stringify(body) : body,
+        })
+    });
 }
