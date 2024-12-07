@@ -51,7 +51,7 @@ That's it! You're ready to go. We've provided an `laravel-examples.spec.ts` spec
 yarn playwright test
 ```
 
-> [!WARNING]
+> [!CAUTION]
 > The `laravel-examples.spec.ts` spec calls `php artisan migrate:fresh --seed` as one of the examples, so if you have important information in your local database make sure to either remove the [`Can execute arbitrary PHP`](./src/stubs/laravel-examples.spec.ts#L25) test first or switch the database (e.g. set a different `DB_CONNECTION` in your `.env`)
 
 ## TODO
